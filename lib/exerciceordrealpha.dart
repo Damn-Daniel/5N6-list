@@ -1,3 +1,6 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -76,11 +79,24 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: ListView(
-              children: Listemoto.map((e) => Text('Marque de moto : '+ e.marque)).toList(),
-            ),
+          children: fibonacci(400).map((e) =>  Container( padding: EdgeInsets.all(40) ,margin: EdgeInsets.only(top : 10), decoration: BoxDecoration(color: Colors.lightBlueAccent,borderRadius: BorderRadius.circular(15)), child: Text(e.toString(),textAlign: TextAlign.center,style: TextStyle(fontSize: 30,color: Colors.blueAccent),),)).toList(),
+            ),//fibonacci(40).map((e) =>  Text(e.toString())).toList()
 
         ),
       );
+  }
+  List<int> fibonacci(int quantite){
+    List<int> list = [];
+    int premierevaleur=0;
+    int nombre=1;
+    list.add(1);
+    for(int a=0;a<quantite;a++){
+    list.add(premierevaleur+nombre);
+    int temp=premierevaleur;
+    premierevaleur=nombre;
+    nombre=temp+nombre;
+  }
+    return list;
   }
   @override
   void initState() {
@@ -88,9 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
     Moto moto = Moto();
     moto.marque="Kawasaki";
     Listemoto.add(moto);
-    setState(() {
-
-    });
+    Moto moto1 = Moto();
+    moto1.marque="Honda";
+    Listemoto.add(moto1);
+    setState(() {});
 
   }
 }
